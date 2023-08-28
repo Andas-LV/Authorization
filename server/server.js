@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb://localhost/auth_example", {
+mongoose.connect("mongodb+srv://andassatybaldy:AOCLLnUWAuZ9oeU3@cluster0.whktpxa.mongodb.net/?retryWrites=true&w=majority", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -18,7 +18,7 @@ const User = mongoose.model("User", {
   passwordHash: String,
 });
 
-const secret = "your_secret_key"; // Replace with your secret key
+const secret = "mySuperSecretKey123";
 
 // Registration
 app.post("/register", async (req, res) => {
