@@ -1,21 +1,19 @@
-import React, { useState } from "react";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import getCookies from "./cookies/getCookie";
 import Protected from "./components/Protected";
+import React from "react";
 
 function App() {
-  const [token, setToken] = useState("");
-
-  const handleLogin = (newToken) => {
-    setToken(newToken);
-  };
+    const token = getCookies('token')
+    console.log("token =>",token)
 
   return (
     <div className="App">
       <h1>Authentication Example</h1>
       <Register />
-      <Login onLogin={handleLogin} />
-      {token && <Protected token={token} />}
+      <Login />
+        <Protected token={token}/>
     </div>
   );
 }

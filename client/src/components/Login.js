@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import setCookies from "../cookies/setCookie";
 import axios from "axios";
+import Protected from "./Protected";
 
-const Login = ({ onLogin }) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,7 +12,10 @@ const Login = ({ onLogin }) => {
     try {
       const response = await axios.post("http://localhost:5000/login", { username, password });
       const token = response.data.token;
-      onLogin(token);
+
+      console.log("token =>",token)
+      setCookies('token', token, 1)
+
       console.log("Login successful");
     } catch (error) {
       console.error("Login failed:", error.response.data.message);

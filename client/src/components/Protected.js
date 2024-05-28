@@ -7,10 +7,10 @@ const Protected = ({ token }) => {
   useEffect(() => {
     const fetchProtectedData = async () => {
       try {
+        document.cookie = `token=${token}; path=/`;
+
         const response = await axios.get("http://localhost:5000/protected", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          withCredentials: true,
         });
         setMessage(response.data.message);
       } catch (error) {
@@ -22,10 +22,10 @@ const Protected = ({ token }) => {
   }, [token]);
 
   return (
-    <div>
-      <h2>Protected Page</h2>
-      <p>{message}</p>
-    </div>
+      <div>
+        <h2>Protected Page</h2>
+        <p>{message}</p>
+      </div>
   );
 };
 
